@@ -31,11 +31,20 @@
 <%= link_to 'New Product', new_product_path %>
 <%
     total = 0
+    total_stock = 0
+    max = Array.new
     @products.each { |product|
-      total += product.price      
+      total += product.price
+      total_stock += product.stock_quantity
+      max << product.price
     }
+    
+    
 %>
 <p>The average price is $<%= (total/@products.size).round(2)%></p>
+<p>The maximum price is $<%= max.max%></p>
+<p>The total number of unique products is <%= @products.distinct(:title).size%></p>
+<p>The total stock quantity is <%= total_stock%></p>
 <% 100.times do %>
   <p>Chunky Bacon!</p>
 <% end %>
