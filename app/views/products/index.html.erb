@@ -29,6 +29,13 @@
 <br>
 
 <%= link_to 'New Product', new_product_path %>
+<%
+    total = 0
+    @products.each { |product|
+      total += product.price      
+    }
+%>
+<p>The average price is $<%= (total/@products.size).round(2)%></p>
 <% 100.times do %>
   <p>Chunky Bacon!</p>
 <% end %>
